@@ -133,3 +133,31 @@ console.log(catalog.findCourse('HTML & CSS').getInfo());
 // HTML & CSS: 25 студентів, 900 грн
 
 console.log(catalog.getTotalPotentialIncome()); // 46500
+
+// task-05
+class PremiumCourse extends Course {
+  constructor(params) {
+    super({
+      title: params.title,
+      price: params.price,
+      students: params.students,
+    });
+    this.mentor = params.mentor;
+  }
+  getInfo() {
+    return `${super.getInfo()}. Ментор: ${this.mentor}`;
+  }
+}
+const premiumCourse = new PremiumCourse({
+  title: 'Advanced JavaScript',
+  price: 2500,
+  students: 10,
+  mentor: 'Ірина',
+});
+
+catalog.addCourse(premiumCourse);
+
+console.log(catalog.findCourse('Advanced JavaScript').getInfo());
+// Advanced JavaScript: 10 студентів, 2500 грн. Ментор: Ірина
+
+console.log(catalog.getTotalPotentialIncome()); // 71500
